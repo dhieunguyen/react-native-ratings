@@ -64,12 +64,12 @@ export type TapRatingProps = {
    *
    * Default is none
    */
-   ratingContainerStyle?: StyleProp<ViewStyle>;
+  ratingContainerStyle?: StyleProp<ViewStyle>;
 
   /**
    * Callback method when the user finishes rating. Gives you the final rating value as a whole number
    */
-  onFinishRating?: ( number ) => void;
+  onFinishRating?: (number) => void;
 
   /**
    * Whether the rating can be modiefied by the user
@@ -96,64 +96,66 @@ export type TapRatingProps = {
    * Pass in a custom base image source
    */
   starImage?: string;
+  starStyle?: StyleProp<ViewStyle>;
 };
 
 const TapRating: React.FunctionComponent<TapRatingProps> = props => {
-  const [position, setPosition] = useState<number>( props.defaultRating );
+  const [position, setPosition] = useState<number>(props.defaultRating);
 
-  useEffect( () => {
+  useEffect(() => {
     const { defaultRating } = props;
 
-    if ( defaultRating === null || defaultRating === undefined ) {
-      setPosition( 3 );
+    if (defaultRating === null || defaultRating === undefined) {
+      setPosition(3);
     } else {
-      setPosition( defaultRating );
+      setPosition(defaultRating);
     }
-  }, [props.defaultRating] );
+  }, [props.defaultRating]);
 
   const renderStars = rating_array => {
-    return _.map( rating_array, star => {
+    return _.map(rating_array, star => {
       return star;
-    } );
+    });
   };
 
   const starSelectedInPosition = position => {
     const { onFinishRating } = props;
 
-    if ( typeof onFinishRating === "function" ) {
-      onFinishRating( position );
+    if (typeof onFinishRating === "function") {
+      onFinishRating(position);
     }
 
-    setPosition( position );
+    setPosition(position);
   };
 
-  const { count, reviews, showRating, reviewColor, reviewSize } = props;
+  const { count, reviews, showRating, reviewColor, reviewSize, starStyle } = props;
   const rating_array = [];
   const starContainerStyle = [styles.starContainer];
 
-  if ( props.starContainerStyle ) {
-    starContainerStyle.push( props.starContainerStyle );
+  if (props.starContainerStyle) {
+    starContainerStyle.push(props.starContainerStyle);
   }
 
   const ratingContainerStyle = [styles.ratingContainer];
 
-  if ( props.ratingContainerStyle ) {
-    ratingContainerStyle.push( props.ratingContainerStyle );
+  if (props.ratingContainerStyle) {
+    ratingContainerStyle.push(props.ratingContainerStyle);
   }
 
-  _.times( count, index => {
+  _.times(count, index => {
     rating_array.push(
       <Star
+        starStyle={starStyle}
         key={index}
         position={index + 1}
         starSelectedInPosition={value => {
-          starSelectedInPosition( value );
+          starSelectedInPosition(value);
         }}
         fill={position >= index + 1}
         {...props}
       />
     );
-  } );
+  });
 
   return (
     <View style={ratingContainerStyle}>
@@ -167,7 +169,7 @@ const TapRating: React.FunctionComponent<TapRatingProps> = props => {
           {reviews[position - 1]}
         </Text>
       }
-      <View style={starContainerStyle}>{renderStars( rating_array )}</View>
+      <View style={starContainerStyle}>{renderStars(rating_array)}</View>
     </View>
   );
 };
@@ -178,10 +180,13 @@ TapRating.defaultProps = {
   count: 5,
   showRating: true,
   reviewColor: "rgba(230, 196, 46, 1)",
-  reviewSize: 25
+  reviewSize: 25,
+  starStyle:{
+    margin:3
+  }
 };
 
-const styles = StyleSheet.create( {
+const styles = StyleSheet.create({
   ratingContainer: {
     backgroundColor: "transparent",
     flexDirection: "column",
@@ -197,6 +202,6 @@ const styles = StyleSheet.create( {
     alignItems: "center",
     justifyContent: "center"
   }
-} );
+});
 
 export default TapRating;

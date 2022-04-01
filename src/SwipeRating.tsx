@@ -15,7 +15,7 @@ import {
 } from "react-native";
 
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
-const STAR_IMAGE = require( "./images/star.png" );
+const STAR_IMAGE = require( "./images/ic_star.png" );
 const HEART_IMAGE = require( "./images/heart.png" );
 const ROCKET_IMAGE = require( "./images/rocket.png" );
 const BELL_IMAGE = require( "./images/bell.png" );
@@ -23,7 +23,7 @@ const BELL_IMAGE = require( "./images/bell.png" );
 const TYPES = {
   star: {
     source: STAR_IMAGE,
-    color: "#f1c40f",
+    color: "#FF9051",
     backgroundColor: "white"
   },
   heart: {
@@ -197,7 +197,7 @@ export default class SwipeRating extends Component<
   static defaultProps = {
     type: "star",
     ratingImage: STAR_IMAGE,
-    ratingColor: "#f1c40f",
+    ratingColor: "#FF9051",
     ratingBackgroundColor: "white",
     ratingCount: 5,
     showReadOnlyText: true,
