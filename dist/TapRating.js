@@ -25,7 +25,7 @@ const TapRating = props => {
         }
         setPosition(position);
     };
-    const { count, reviews, showRating, reviewColor, reviewSize } = props;
+    const { count, reviews, showRating, reviewColor, reviewSize,starStyle } = props;
     const rating_array = [];
     const starContainerStyle = [styles.starContainer];
     if (props.starContainerStyle) {
@@ -36,7 +36,7 @@ const TapRating = props => {
         ratingContainerStyle.push(props.ratingContainerStyle);
     }
     _.times(count, index => {
-        rating_array.push(<Star key={index} position={index + 1} starSelectedInPosition={value => {
+        rating_array.push(<Star starStyle={starStyle} key={index} position={index + 1} starSelectedInPosition={value => {
                 starSelectedInPosition(value);
             }} fill={position >= index + 1} {...props}/>);
     });
@@ -57,7 +57,10 @@ TapRating.defaultProps = {
     count: 5,
     showRating: true,
     reviewColor: "rgba(230, 196, 46, 1)",
-    reviewSize: 25
+    reviewSize: 25,
+    starStyle:{
+        margin:3
+    }
 };
 const styles = StyleSheet.create({
     ratingContainer: {

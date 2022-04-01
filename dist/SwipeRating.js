@@ -9,7 +9,7 @@ const BELL_IMAGE = require("./images/bell.png");
 const TYPES = {
     star: {
         source: STAR_IMAGE,
-        color: "#f1c40f",
+        color: "#FF9051",
         backgroundColor: "white"
     },
     heart: {
@@ -280,7 +280,7 @@ export default class SwipeRating extends Component {
 SwipeRating.defaultProps = {
     type: "star",
     ratingImage: STAR_IMAGE,
-    ratingColor: "#f1c40f",
+    ratingColor: "#FF9051",
     ratingBackgroundColor: "white",
     ratingCount: 5,
     showReadOnlyText: true,
