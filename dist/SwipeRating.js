@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import times from "lodash/times";
 import { View, Text, Animated, PanResponder, Image, StyleSheet, Platform, Dimensions } from "react-native";
 // RATING IMAGES WITH STATIC BACKGROUND COLOR (white)
-const STAR_IMAGE = require("./images/star.png");
+const STAR_IMAGE = require("./images/ic_star.png");
 const HEART_IMAGE = require("./images/heart.png");
 const ROCKET_IMAGE = require("./images/rocket.png");
 const BELL_IMAGE = require("./images/bell.png");
